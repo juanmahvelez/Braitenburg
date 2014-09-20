@@ -1,5 +1,5 @@
 #!/usr/bin/env python 
-import random
+import random, parse_midi
 song = [[1,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1], [0,1,0,1,1,1,0], [1,1,1,1,0,0,0]]
 
 def magic(song, windowSize):
