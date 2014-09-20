@@ -37,12 +37,7 @@ def midi_to_patterns(midi_in, csv_out = 'drums.csv'):
   print [ pattern.tolist() for id, pattern in patterns.items() ]
   print track_len
 
-def patterns_to_midi(patterns):
-  header_lines = [[0, 0, 'Header', 0, 1, 96
-1, 0, Start_track
-1, 0, Title_t, "MIDI Drums\000"
-1, 0, Time_signature, 4, 2, 36, 8
-1, 0, Time_signature, 4, 2, 36, 8
+
 
 
 midi_in = "~/Downloads/MIDI_Drums_q16_16t.mid"
