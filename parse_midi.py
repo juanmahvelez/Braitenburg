@@ -40,7 +40,7 @@ def midi_to_patterns(midi_in, csv_out = 'drums.csv'):
 
 
 
-midi_in = "~/Downloads/MIDI_Drums_q16_16t.mid"
-csv_out = 'drums.csv'
+midi_in = "midi/train.mid"
+csv_out = 'csv/drums.csv'
 
 midi_to_tracks(midi_in)
