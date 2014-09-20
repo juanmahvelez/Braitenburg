@@ -37,10 +37,12 @@ def midi_to_patterns(midi_in, csv_out = 'drums.csv'):
   print [ pattern.tolist() for id, pattern in patterns.items() ]
   print track_len
 
+  return patterns
+
 
 
 
 midi_in = "~/Downloads/MIDI_Drums_q16_16t.mid"
 csv_out = 'drums.csv'
 
-midi_to_tracks(midi_in)
+##midi_to_tracks(midi_in)
