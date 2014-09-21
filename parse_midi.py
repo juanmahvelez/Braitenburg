@@ -90,6 +90,7 @@ def patterns_to_midi_v2(patterns, midi_out):
   with open(midi_out, 'wb') as f:
     midi.writeFile(f)
 
+"""
 midi_in = "~/Downloads/MIDI_Drums_q16_16t.mid"
 midi_out = 'drums.mid'
 csv_out = 'drums.csv'
@@ -97,6 +98,7 @@ csv_out = 'drums.csv'
 patterns = midi_to_patterns(midi_in)
 
 patterns_to_midi_v2(patterns, midi_out)
+"""
 
 #os.system('cat header.csv drums.csv > drums2.csv')
 #os.system('csvmidi drums2.csv drums.mid')

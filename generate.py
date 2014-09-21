@@ -33,14 +33,19 @@ def createModel(track, windowSizeX):
 	#print model
 	return model
 
-def generate(sequence, model, length, order):
+def generate(seed, model, length, order):
+	sequence = seed
 	for i in range(length):
 		pattern = sequence[-order:]
 
-		while not model.has_key(tuple(pattern)):
+		while not model.has_key(tuple(pattern)) and len(pattern) > 16:
 			#print "no ", tuple(pattern)
 			pattern = pattern[1:]
 		
+                if tuple(pattern) not in model:
+			sequence.append(0)
+			continue
+
 		chanceZero = model[tuple(pattern)][0]
 		chanceOne = model[tuple(pattern)][1]
 
@@ -55,19 +60,18 @@ def generate(sequence, model, length, order):
 	#print sequence
 	return sequence
 
-def make_song():
-	midi_in = "./midi/train.mid"
-
+def make_song(midi_in = "./midi/train.mid", window_size = 256):
 	song = parse_midi.midi_to_patterns(midi_in)
-
+	section_len = 12
+        ntimes = 8
 	result = {}
 	for track in song:
 		print "workin on " , track 
 		trax = [int(i) for i in song[track]]
-		sequence = generate([1,0,0,0], magic(trax,256), 2000, 256)
+		sequence = generate([1,0,0,0], magic(trax, window_size), section_len, window_size)
+		for i in xrange(ntimes - 1):
+			sequence.extend(generate([1,0,0,0], magic(trax, window_size), section_len, window_size))
 		sequence = [float(j) for j in sequence]
 		result[track] = sequence 
 	print result
 	return result
-make_song()
-
