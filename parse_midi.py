@@ -11,9 +11,9 @@ NOTE_OFF = 'Note_off_c'
 
 ticks_per_32nd_note = 12
 velocity_thresh = {
-  36: 32, # KICK
-  38: 32, # SNARE
-  42: 32  # HIHAT
+  36: 42, # KICK
+  38: 22, # SNARE
+  42: 22  # HIHAT
 }
 
 def midi_to_patterns(midi_in, csv_out = 'drums.csv'):
