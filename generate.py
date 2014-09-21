@@ -1,5 +1,5 @@
 #!/usr/bin/env python 
-import random
+import random, parse_midi
 song = [[1,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1], [0,1,0,1,1,1,0], [1,1,1,1,0,0,0]]
 
 def magic(song, windowSize):
@@ -32,7 +32,7 @@ def createModel(track, windowSizeX):
 				else:
 					value = (2,1)
 				model[nMinusOnePattern] = value
-	print model
+	#print model
 	return model
 
 def generate(sequence, model, length, order):
@@ -40,25 +40,25 @@ def generate(sequence, model, length, order):
 		pattern = sequence[-order:]
 
 		while not model.has_key(tuple(pattern)):
-			print "no ", tuple(pattern)
+			#print "no ", tuple(pattern)
 			pattern = pattern[1:]
-			raw_input()
 		
 		chanceZero = model[tuple(pattern)][0]
 		chanceOne = model[tuple(pattern)][1]
 
 		rando = chanceZero + chanceOne
 		rr = random.randint(1,rando)
-		print rr, "random number"
+		#print rr, "random number"
 		newBeat = 1
 		if rr<=chanceZero:
 			newBeat = 0
 
-		print "found pattern ", tuple(pattern), model[tuple(pattern)]
 		sequence.append(newBeat)
-		print "new sequence", sequence
+	print sequence
 
+midi_in = "./midi/train.mid"
 
-
-generate([1,0,1,0,1], magic(song,4), 10, 4)
+song = parse_midi.midi_to_patterns(midi_in)
+song = [[int(i) for i in song[36]]]
+generate([1,0,0,0], magic(song,256), 2000, 256)
 

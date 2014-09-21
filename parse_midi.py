@@ -70,8 +70,6 @@ def patterns_to_midi(patterns, midi_out, csv_out = 'drums.csv'):
     csv_lines.sort(key = lambda x: x[1])
     writer.writerows(csv_lines)
 
-  #os.system(" ".join(['csvmidi', csv_out, midi_out])
-
 def patterns_to_midi_v2(patterns, midi_out):
   num_tracks = len(patterns)
   midi = MIDIFile(num_tracks)
