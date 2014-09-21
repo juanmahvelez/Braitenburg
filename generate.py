@@ -2,11 +2,9 @@
 import random, parse_midi
 song = [[1,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1], [0,1,0,1,1,1,0], [1,1,1,1,0,0,0]]
 
-def magic(song, windowSize):
-	for track in song:
-		model = createModel(track, windowSize)
-		return model
-	return 
+def magic(track, windowSize):
+	model = createModel(track, windowSize)
+	return model
 
 
 def createModel(track, windowSizeX):
@@ -54,11 +52,22 @@ def generate(sequence, model, length, order):
 			newBeat = 0
 
 		sequence.append(newBeat)
-	print sequence
+	#print sequence
+	return sequence
 
-midi_in = "./midi/train.mid"
+def make_song():
+	midi_in = "./midi/train.mid"
 
-song = parse_midi.midi_to_patterns(midi_in)
-song = [[int(i) for i in song[36]]]
-generate([1,0,0,0], magic(song,256), 2000, 256)
+	song = parse_midi.midi_to_patterns(midi_in)
+
+	result = {}
+	for track in song:
+		print "workin on " , track 
+		trax = [int(i) for i in song[track]]
+		sequence = generate([1,0,0,0], magic(trax,256), 2000, 256)
+		sequence = [float(j) for j in sequence]
+		result[track] = sequence 
+	print result
+	return result
+make_song()
 
