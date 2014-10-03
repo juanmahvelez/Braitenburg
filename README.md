@@ -7,7 +7,11 @@
 3) Run run.py specifying:
 
 midi_in => Your training MIDI data. It has to have three tracks corresponding to Kick, Snare and HiHats
+
+
 midi_out => MIDI out file (could be anything)
+
+
 window_size => The sliding window size when building the probabilistic model
 
 midi_in = './midi/train.mid'
